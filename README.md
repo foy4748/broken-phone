@@ -54,6 +54,12 @@ Fix: used the dataLimit variable
 Problem: Phone Container was appending new results at the end after searching. 
 
 Fix: Uncommented the line that empty the Phone Container
+
+## Error 10  
+
+Problem: Pressing enter to search phone was not working  
+
+Fix: Set the comparsion of pressed key as lower case  
 ---
 # phone-hunter
 

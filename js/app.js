@@ -5,8 +5,7 @@ const loadPhones = async (searchText, dataLimit) => {
   displayPhones(data.data, dataLimit);
 };
 
-//Info : Added defautl value for safety
-const displayPhones = (phones, dataLimit = 10) => {
+const displayPhones = (phones, dataLimit) => {
   const phonesContainer = document.getElementById("phones-container");
 
   // Error 9
@@ -89,7 +88,12 @@ document.getElementById("btn-search").addEventListener("click", function () {
 document
   .getElementById("search-field")
   .addEventListener("keypress", function (e) {
-    if (e.key === "enter") {
+    // Error 10
+    // Problem: Pressing enter to search phone was not working
+    //if (e.key === "enter") {
+
+    // Fix: Set the comparsion of pressed key as lower case
+    if (e.key.toLowerCase() === "enter") {
       processSearch(10);
     }
   });
@@ -128,7 +132,6 @@ const displayPhoneDetails = (phone) => {
   const modalTitle = document.getElementById("phoneDetailModalLabel");
   modalTitle.innerText = phone.name;
   const phoneDetails = document.getElementById("phone-details");
-  console.log(phone.mainFeatures.sensors[0]);
 
   //Error 6
   //Problem: Storage was showing [Object object] in modal
