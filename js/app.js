@@ -29,12 +29,16 @@ const displayPhones = (phones, dataLimit) => {
     const phoneDiv = document.createElement("div");
     phoneDiv.classList.add("col");
 
-    //Error 2
+    // Error 2
     //Problem: Media is trying to accessing undefined url.
     //Fix: The phone cards had wrong property value.
     //Wrong piece of code
     // <img src="${phone.image}" class="card-img-top" alt="...">
-    phonesContainer.innerHTML = `
+
+    // Error 3
+    //Problem: Only one item was showing on UI. because the template was feeding to wrong place
+    //Fix: Feed the template to template container Then append the template container in the whole item container
+    phoneDiv.innerHTML = `
         <div class="card p-4">
             <img src="${phone.image}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -80,7 +84,11 @@ document
 
 const toggleSpinner = (isLoading) => {
   const loaderSection = document.getElementById("loader");
-  if (!isLoading) {
+  // Error 4
+  //Problem: Logical Error in Showing Loading Spin
+  //if (!isLoading) {
+  //Fix: Showing Spinner if isLoading is true
+  if (isLoading) {
     loaderSection.classList.remove("d-none");
   } else {
     loaderSection.classList.add("d-none");
@@ -93,7 +101,12 @@ document.getElementById("btn-show-all").addEventListener("click", function () {
 });
 
 const loadPhoneDetails = async (id) => {
-  const url = `www.openapi.programming-hero.com/api/phone/${id}`;
+  // Error 5
+  // Problem: The URL was wrong & doesn't contains https://
+  // const url = `www.openapi.programming-hero.com/api/phone/${id}`;
+
+  //Fix: Copied the right url from API documentation
+  const url = `https://openapi.programming-hero.com/api/phone/${id}`;
   const res = await fetch(url);
   const data = await res.json();
   displayPhoneDetails(data.data);
@@ -119,5 +132,8 @@ const displayPhoneDetails = (phone) => {
     `;
 };
 
-loadPhones("apple");
+// Error 4
+// Fix: Setting the Spinner before loading data
+toggleSpinner(true);
 
+loadPhones("apple");
