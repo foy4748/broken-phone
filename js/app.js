@@ -32,10 +32,14 @@ const displayPhones = (phones, dataLimit) => {
 
   // display no phones found
   const noPhone = document.getElementById("no-found-message");
+  const showAllBtn = document.getElementById("btn-show-all");
+
   if (phones.length === 0) {
     noPhone.classList.remove("d-none");
+    showAllBtn.classList.add("d-none");
   } else {
     noPhone.classList.add("d-none");
+    showAllBtn.classList.remove("d-none");
   }
   // display all phones
   phones.forEach((phone) => {

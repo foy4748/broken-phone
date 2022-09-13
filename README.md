@@ -64,6 +64,10 @@ Fix: Set the comparsion of pressed key as lower case
 ## Issue 1 
 Fixed the home page Show all button by saving the search  
 query in localstorage
+
+## Issue 2 
+Hide the Show All button if no phone found after searching
+
 ---
 # phone-hunter
 
