@@ -60,6 +60,10 @@ Fix: Uncommented the line that empty the Phone Container
 Problem: Pressing enter to search phone was not working  
 
 Fix: Set the comparsion of pressed key as lower case  
+
+## Issue 1 
+Fixed the home page Show all button by saving the search  
+query in localstorage
 ---
 # phone-hunter
 

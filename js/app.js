@@ -2,6 +2,8 @@ const loadPhones = async (searchText, dataLimit) => {
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
   const res = await fetch(url);
   const data = await res.json();
+
+  localStorage.setItem("query", searchText);
   displayPhones(data.data, dataLimit);
 };
 
@@ -69,7 +71,10 @@ const displayPhones = (phones, dataLimit) => {
 const processSearch = (dataLimit) => {
   toggleSpinner(true);
   const searchField = document.getElementById("search-field");
-  const searchText = searchField.value;
+  const searchText = searchField.value
+    ? searchField.value
+    : localStorage.getItem("query");
+  searchField.value = "";
   loadPhones(searchText, dataLimit);
 };
 
@@ -144,7 +149,7 @@ const displayPhoneDetails = (phone) => {
         <p>Storage: ${phone.mainFeatures.storage}</p>
         <p>Others: ${
           phone.others ? phone.others.Bluetooth : "No Bluetooth Information"
-        }</p>
+        }</p"apple">
         <p>Sensor: ${
           phone.mainFeatures.sensors
             ? phone.mainFeatures.sensors[0]
