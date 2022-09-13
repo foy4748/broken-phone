@@ -1,3 +1,17 @@
+# Error Log
+## Error 1  
+Found in Console.  
+Problem: The ID was wrong, so event was listening to null. js/app.js : 59
+Fix: Fixed the id.  
+
+## Error 2
+Found in Console.  
+GET http://localhost:3000/undefined 404 (Not Found)  
+
+Problem: Media is trying to accessing undefined url.  
+Fix: The phone cards had wrong property value.  
+
+---
 # phone-hunter
 
 ## API Links
