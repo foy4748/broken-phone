@@ -5,13 +5,25 @@ const loadPhones = async (searchText, dataLimit) => {
   displayPhones(data.data, dataLimit);
 };
 
-const displayPhones = (phones, dataLimit) => {
+//Info : Added defautl value for safety
+const displayPhones = (phones, dataLimit = 10) => {
   const phonesContainer = document.getElementById("phones-container");
-  // phonesContainer.textContent = '';
+
+  // Error 9
+  //Problem: Phone Container was appending new results at the end after searching.
+  //phonesContainer.textContent = "";
+
+  //Fix: Uncommented the line that empty the Phone Container
+  phonesContainer.textContent = "";
   // display 10 phones only
   const showAll = document.getElementById("show-all");
   if (dataLimit && phones.length > 10) {
-    phones = phones.slice(0, 10);
+    // Error 8
+    // Problem: Hard coded dataLimit as written
+    //phones = phones.slice(0, 10);
+
+    // Fix: used the dataLimit variable
+    phones = phones.slice(0, dataLimit);
     showAll.classList.remove("d-none");
   } else {
     showAll.classList.add("d-hidden");
@@ -113,14 +125,20 @@ const loadPhoneDetails = async (id) => {
 };
 
 const displayPhoneDetails = (phone) => {
-  console.log(phone);
   const modalTitle = document.getElementById("phoneDetailModalLabel");
   modalTitle.innerText = phone.name;
   const phoneDetails = document.getElementById("phone-details");
   console.log(phone.mainFeatures.sensors[0]);
+
+  //Error 6
+  //Problem: Storage was showing [Object object] in modal
+  //Fix: Accessed the property value storage
+  //Wrong piece of code
+  //<p>Storage: ${phone.mainFeatures}</p>
+
   phoneDetails.innerHTML = `
         <p>Release Date: ${phone.releaseDate}</p>
-        <p>Storage: ${phone.mainFeatures}</p>
+        <p>Storage: ${phone.mainFeatures.storage}</p>
         <p>Others: ${
           phone.others ? phone.others.Bluetooth : "No Bluetooth Information"
         }</p>
@@ -136,4 +154,9 @@ const displayPhoneDetails = (phone) => {
 // Fix: Setting the Spinner before loading data
 toggleSpinner(true);
 
-loadPhones("apple");
+// Error 7
+// Problem: dataLimit was not provided
+//loadPhones("apple");
+
+//Fix: passed dataLimit as argument
+loadPhones("apple", 10);

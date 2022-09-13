@@ -31,7 +31,29 @@ Problem: The URL was wrong & doesn't contains https://
 
 Fix: Copied the right url from API documentation  
 
+## Error 6  
 
+Problem: Storage was showing [Object object] in modal
+
+Fix: Accessed the property value storage
+
+## Error 7  
+
+Problem: dataLimit was not provided  
+
+Fix: passed dataLimit as argument  
+
+## Error 8  
+
+Problem: Hard coded dataLimit as written  
+
+Fix: used the dataLimit variable  
+
+## Error 9
+
+Problem: Phone Container was appending new results at the end after searching. 
+
+Fix: Uncommented the line that empty the Phone Container
 ---
 # phone-hunter
 
