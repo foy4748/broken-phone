@@ -68,6 +68,9 @@ query in localstorage
 ## Issue 2 
 Hide the Show All button if no phone found after searching
 
+## Issue 3 
+Hide Show All button after clicking it.
+
 ---
 # phone-hunter
 

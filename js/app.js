@@ -3,6 +3,10 @@ const loadPhones = async (searchText, dataLimit) => {
   const res = await fetch(url);
   const data = await res.json();
 
+  // Issue 1
+  // Storing the Search query in Local Storage
+  // So that the input field can be cleared.
+  // And the Show All button still works
   localStorage.setItem("query", searchText);
   displayPhones(data.data, dataLimit);
 };
@@ -27,12 +31,18 @@ const displayPhones = (phones, dataLimit) => {
     phones = phones.slice(0, dataLimit);
     showAll.classList.remove("d-none");
   } else {
-    showAll.classList.add("d-hidden");
+    // Issue 3
+    // Added d-none instead of d-hidden
+    // Probably It was an error
+    showAll.classList.add("d-none");
   }
 
   // display no phones found
   const noPhone = document.getElementById("no-found-message");
   const showAllBtn = document.getElementById("btn-show-all");
+
+  // Issue 2
+  //Hide the Show All button if no phone found after searching
 
   if (phones.length === 0) {
     noPhone.classList.remove("d-none");
@@ -75,9 +85,15 @@ const displayPhones = (phones, dataLimit) => {
 const processSearch = (dataLimit) => {
   toggleSpinner(true);
   const searchField = document.getElementById("search-field");
+
+  // Issue 1
+  // Parsing search query from local storage if
+  // input field is empty
   const searchText = searchField.value
     ? searchField.value
     : localStorage.getItem("query");
+
+  //Clearing the input field
   searchField.value = "";
   loadPhones(searchText, dataLimit);
 };
@@ -122,6 +138,9 @@ const toggleSpinner = (isLoading) => {
 
 // not the best way to load show All
 document.getElementById("btn-show-all").addEventListener("click", function () {
+  // Issue 3
+  // Hiding the show all button after clicking it
+  this.classList.add("d-none");
   processSearch();
 });
 
